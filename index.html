@@ -16,7 +16,8 @@
     <div class="brand-name">JOSE-IGNACIO CALDERON</div>
     <div class="brand-subtitle" style="padding-left: 1px;">Economist and Researcher</div>
   </div>
-  <nav class="wrap" style="padding-right: 120px;">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
+  <nav id="site-nav" class="wrap" style="padding-right: 120px;">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="research.html">Research</a>
@@ -42,6 +43,7 @@
         <a class="btn solid" href="https://www.dropbox.com/scl/fi/8gcd1ia27gvtngcjf6j5j/CurriculumVitae_JICalderon.pdf?rlkey=m1ingiaoov976cdleeq0jbehe&st=hp75700h&dl=0">Download CV</a>
         <a class="btn ghost" href="about.html">Read more →</a>
       </div>
+      <p></p>
     </div>
   </section>
 </div>
@@ -137,3 +139,12 @@
  
 </body>
 </html>
+
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const siteNav = document.getElementById('site-nav');
+  navToggle.addEventListener('click', () => siteNav.classList.toggle('open'));
+  siteNav.querySelectorAll('a').forEach(link =>
+    link.addEventListener('click', () => siteNav.classList.remove('open'))
+  );
+</script>

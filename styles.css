@@ -125,22 +125,34 @@ footer ul a{text-decoration:none; color:var(--ink);}
 footer ul a:hover{color:var(--accent);}
 .footer-bottom{font-size:12.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:20px;}
 
+.nav-toggle{
+  display:none; background:none; border:none; font-size:24px;
+  cursor:pointer; color:var(--ink); padding:4px 8px;
+}
+
 @media (max-width:640px){
   header, header .wrap{
-    flex-direction:column; align-items:flex-start; gap:12px;
-    padding-top:20px; padding-bottom:20px;
+    flex-direction:row; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
   }
   .brand-name{font-size:14px;}
   .brand-subtitle{font-size:9px;}
-  nav{gap:12px; font-size:12px; flex-wrap:wrap;}
+
+  .nav-toggle{display:block;}
+
+  nav{
+    display:none; flex-direction:column;
+    position:absolute; top:100%; left:0; right:0;
+    background:#fff; border-bottom:1px solid var(--line);
+    padding:16px 20px; gap:16px; z-index:99;
+  }
+  nav.open{display:flex;}
 
   .hero{grid-template-columns:1fr !important; padding:32px 0; gap:24px;}
   .portrait{max-width:160px; margin:0 auto !important;}
   .hero h1{font-size:1.8rem;}
   .hero p{font-size:0.95rem; max-width:none;}
-
   .wrap{padding:0 20px;}
-
   .rsch-columns, .teach-grid, .project-grid, .media-grid, .paper-list{
     grid-template-columns:1fr !important;
   }
