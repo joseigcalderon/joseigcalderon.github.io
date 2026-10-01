@@ -78,6 +78,7 @@
     font-family:'Inter', sans-serif; font-size:10.5px; font-weight:500;
     border:1px solid var(--line); border-radius:20px; padding:4px 12px;
     text-decoration:none; color:var(--ink-soft);
+    background:#fff; cursor:pointer;
   }
   .rsch-pill:hover{border-color:var(--accent); color:var(--accent);}
  
@@ -244,9 +245,13 @@
           <div class="rsch-venue-line">
             <span class="rsch-badge">Draft soon</span>
           </div>
-          <div class="rsch-authors">with Alessandra Diaz, Macarena Salas, Dany Lopez, and Diego Carrasco</div>
+          <div class="rsch-authors">with Diego Carrasco, Alessandra Diaz, Dany Lopez, and Macarena Salas</div>
           <div class="rsch-pills">
-            <a class="rsch-pill" href="#">BibTeX</a>
+            <a class="rsch-pill copy-bibtex" data-bibtex="@unpublished{Calderon2026ADPTurnover,
+              title={Principal Effectiveness and Teacher Turnover: Evidence from a Managerial Reform in Chile},
+              author={Calderon, Jose-Ignacio and Carrasco, Diego and Diaz-Sacco, Alessandra and Lopez-Gonzalez, Dany and Salas, Macarena},
+              year={2026},
+              note={Working Paper}}">BibTeX</a>
           </div>
         </div>
       </div>
@@ -341,6 +346,47 @@
     });
   });
 </script>
- 
+
+<script>
+  const toggleBtn = document.getElementById('toggle-bibtex');
+  const bibtexBlock = document.getElementById('bibtex-block');
+  toggleBtn.addEventListener('click', () => {
+    const isOpen = bibtexBlock.classList.toggle('open');
+    toggleBtn.textContent = isOpen ? 'Hide BibTeX' : 'Show BibTeX';
+  });
+
+  function flashCopied(btn){
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  }
+
+  document.getElementById('copy-citation').addEventListener('click', (e) => {
+    const text = document.getElementById('citation-text').textContent.trim();
+    navigator.clipboard.writeText(text).then(() => flashCopied(e.target));
+  });
+
+  document.getElementById('copy-bibtex').addEventListener('click', (e) => {
+    const text = document.getElementById('bibtex-block').textContent.trim();
+    navigator.clipboard.writeText(text).then(() => flashCopied(e.target));
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.copy-bibtex').forEach(btn => {
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(btn.dataset.bibtex).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
